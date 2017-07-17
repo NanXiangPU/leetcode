@@ -1,0 +1,1 @@
+For undirected graph, dfs can be applied as well.
