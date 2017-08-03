@@ -1,0 +1,1 @@
+Given two decimal in form like 1/4 and 3/2, generate the result of 1/4 + 3/2 like 7/4.

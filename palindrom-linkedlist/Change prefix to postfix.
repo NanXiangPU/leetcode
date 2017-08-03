@@ -1,0 +1,6 @@
+Change prefix to postfix.
+
+Example:
+prefix: + 1 2
+infix: 1 + 2
+postfix: 1 2 +
