@@ -1,0 +1,1 @@
+Validate if the given input can construct a binary tree
