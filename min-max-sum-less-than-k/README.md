@@ -1,0 +1,1 @@
+给一个set，求有多少个subsets，里面的min和max之和小于k。国人小哥很nice的提示了可以先排序，然后two pointer从两头往中间找
