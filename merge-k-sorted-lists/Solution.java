@@ -8,31 +8,29 @@
  */
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode res = new ListNode(0);
-        ListNode dummy = res;
+        ListNode head = new ListNode(0);
         if (lists == null || lists.length == 0) {
             return null;
         }
-        PriorityQueue pq = new PriorityQueue<ListNode>(lists.length, new Comparator<ListNode>(){
-            @Override
+        ListNode dummy = head;
+        PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(new Comparator<ListNode>() {
             public int compare(ListNode a, ListNode b) {
                 return a.val - b.val;
-            }
+            } 
         });
-        for (ListNode node : lists) {
-            if (node != null) {
-                pq.offer(node);
+        for (ListNode list : lists) {
+            if (list != null) {
+                pq.offer(list);
             }
         }
         while (!pq.isEmpty()) {
-            ListNode node = (ListNode)pq.poll();
+            ListNode node = pq.poll();
             dummy.next = new ListNode(node.val);
             dummy = dummy.next;
             if (node.next != null) {
                 pq.offer(node.next);
             }
         }
-        return res.next;
-        
+        return head.next;
     }
 }

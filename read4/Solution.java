@@ -13,18 +13,17 @@ public class Solution extends Reader4 {
         }
         char[] buffer = new char[4];
         boolean eof = false;
-        int readBytes = 0;
-        while (!eof && readBytes < n) {
-            int currReadBytes = read4(buffer);
-            if (currReadBytes != 4) {
+        int count = 0;
+        while (count < n && !eof) {
+            int size = read4(buffer);
+            if (size < 4) {
                 eof = true;
             }
-            int length = Math.min(n - readBytes, currReadBytes);
-            for (int i = 0; i < length; ++i) {
-                buf[readBytes + i] = buffer[i];
+            size = Math.min(size, n - count);
+            for (int i = 0; i < size; ++i) {
+                buf[count++] = buffer[i];
             }
-            readBytes += length;
         }
-        return readBytes;
+        return count;
     }
 }

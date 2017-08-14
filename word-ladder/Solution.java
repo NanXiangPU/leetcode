@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 pupublic class Solution {
     //2-way bfs
         public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+=======
+ppublic class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+>>>>>>> 0cbaf2991569390e007da138983014843bc40b51
         if (wordList == null || wordList.size() == 0) {
             return 0;
         }
@@ -13,20 +18,27 @@ pupublic class Solution {
         beginSet.add(beginWord);
         Set<String> endSet = new HashSet<>();
         endSet.add(endWord);
-        int len = 1;
+        int step = 1;
+        
         while (!beginSet.isEmpty() && !endSet.isEmpty()) {
             if (beginSet.size() > endSet.size()) {
                 Set<String> tmp = beginSet;
                 beginSet = endSet;
                 endSet = tmp;
             }
+<<<<<<< HEAD
             Set<String> neighbors = new HashSet<>();
             for (String str : beginSet) {
                 visited.add(str);
+=======
+            Set<String> tmp = new HashSet<>();
+            for (String str : beginSet) {
+>>>>>>> 0cbaf2991569390e007da138983014843bc40b51
                 char[] letters = str.toCharArray();
                 for (int i = 0; i < letters.length; ++i) {
                     char old = letters[i];
                     for (char c = 'a'; c <= 'z'; ++c) {
+<<<<<<< HEAD
                         if (c == old) {
                             continue;
                         }
@@ -87,7 +99,26 @@ pupublic class Solution {
                 }
             }
             len++;
+=======
+                        letters[i] = c;
+                        String neighbor = String.valueOf(letters);
+                        if (endSet.contains(neighbor)) {
+                            return step + 1;
+                        }
+                        if (wordPool.contains(neighbor) && !visited.contains(neighbor)) {
+                            visited.add(neighbor);
+                            tmp.add(neighbor);
+                        }
+                    }
+                    letters[i] = old;
+                }
+            }
+            
+            step++;
+            beginSet = tmp;
+>>>>>>> 0cbaf2991569390e007da138983014843bc40b51
         }
+        
         return 0;
     }
 }
