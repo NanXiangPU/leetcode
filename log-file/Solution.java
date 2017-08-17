@@ -45,7 +45,7 @@ public class Solution {
 	}
 
 	public static void main(String[] args) {
-		String log = "f1 enter 1\nf2 enter 2\nf2 exit 6\nf1 exit 8";
+		String log = "f1 enter 1\nf2 enter 2\nf2 exit 3\nf1 exit 4";
 		Solution s = new Solution();
 		Map<String, Result> map = s.parseLog(log);
 		for (String str : map.keySet()) {

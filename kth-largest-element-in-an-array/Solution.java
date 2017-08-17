@@ -1,44 +1,40 @@
 public class Solution {
     public int findKthLargest(int[] nums, int k) {
-        if (nums == null || nums.length == 0) {
-            return Integer.MIN_VALUE;
+        if (nums == null || nums.length < k) {
+            return 0;
         }
-<<<<<<< HEAD
-        return quickSort(nums, nums.length - k + 1, 0, nums.length - 1);
+        return partition(nums, 0, nums.length - 1, k);
     }
     
-    public int quickSort(int[] nums, int k, int lo, int hi) {
-        int pivot = nums[hi];
-        int i = lo, j = hi;
+    public int partition(int[] nums, int left, int right, int k) {
+        if (left > right) {
+            return Integer.MAX_VALUE;
+        }
+        int pivot = nums[right];
+        int i = left;
+        int j = right;
         while (i < j) {
-            if (nums[i++] > pivot) {
-                swap(nums, --i, --j);
+            while (i < j && nums[i] < pivot) {
+                i++;
             }
+            while (i < j && nums[j] >= pivot) {
+                j--;
+            }
+            swap(i, j, nums);
         }
-        swap(nums, i, hi);
-        int m = i - lo + 1;
-        if (m == k) {
+        swap(i, right, nums);
+        if (right - i + 1 == k) {
             return nums[i];
-        } else if (m < k) {
-            return quickSort(nums, k - m, i + 1, hi);
+        } else if (right - i + 1 < k) {
+            return partition(nums, left, i - 1, k - (right - i + 1));
         } else {
-            return quickSort(nums, k, lo, i - 1);
+            return partition(nums, i + 1, right, k);
         }
     }
     
-    public void swap(int[] nums, int i, int j) {
+    public void swap(int i, int j, int[] nums) {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
-=======
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for (int i = 0; i < nums.length; ++i) {
-            pq.add(nums[i]);
-            if (pq.size() > k) {
-                pq.poll();
-            }
-        }
-        return pq.poll();
->>>>>>> 75d039f8ce5568327b34ac1908041a60c42506f9
     }
 }

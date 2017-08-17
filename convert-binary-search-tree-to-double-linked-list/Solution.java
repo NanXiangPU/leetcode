@@ -52,6 +52,7 @@ public class Solution {
 		root.right = s.new Node(15);
 		root.left.left = s.new Node(25);
 		root.left.right = s.new Node(30);
+		root.left.right.right = s.new Node(3);
 		root.right.left = s.new Node(36);
 
 		
