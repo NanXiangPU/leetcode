@@ -7,34 +7,27 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
-    int max = 1;
+class Solution {
+    int max = 0;
     public int longestConsecutive(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        helper(root, 1);
+        helper(root, root.val, 0);
         return max;
     }
     
-    public void helper(TreeNode root, int currLen) {
-        if (root == null) {
+    public void helper(TreeNode node, int target, int len) {
+        if (node == null) {
             return;
         }
-        max = Math.max(max, currLen);
-        if (root.left != null) {
-            if (root.val + 1 == root.left.val) {
-                helper(root.left, currLen + 1);
-            } else {
-                helper(root.left, 1);
-            }
+        if (node.val == target) {
+            len++;
+        } else {
+            len = 1;
         }
-        if (root.right != null) {
-            if (root.val + 1 == root.right.val) {
-                helper(root.right, currLen + 1);
-            } else {
-                helper(root.right, 1);
-            }
-        } 
+        max = Math.max(len, max);
+        helper(node.left, node.val + 1, len);
+        helper(node.right, node.val + 1, len);
     }
 }
